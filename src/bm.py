@@ -26,25 +26,6 @@ class Bm(object):
 
         return self.table.get(char, len(self.pattern))
 
-    def search2(self) -> int:
-        """
-        Return the first index of the matched string.
-        """
-        counter = len(self.pattern) - 1
-        while counter <= len(self.text) - 1:
-            skips = 0
-            text_counter = counter
-            for char in reversed(self.pattern):
-                if char == self.text[text_counter]:
-                    text_counter -= 1
-                    continue
-                skips = self.decide_slide_width(char)
-                counter += skips
-                break
-            if skips == 0:
-                return counter - (len(self.pattern) - 1)
-        return -1
-
     def search(self) -> int:
         """
         Return the first index of the matched string.
